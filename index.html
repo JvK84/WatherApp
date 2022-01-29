@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
+
+    <!--======================================== ICONS ===========================================-->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <!--====================================== MAIN CSS ==========================================-->
+    <link rel="stylesheet" href="assets/css/main.css">
+
 </head>
+
 <body>
-    
+    <!--======================================== BODY ===========================================-->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="" class="nav__logo">WEATHER APP</a>
+
+            <div class="nav__menu" id="nav-menu">
+                <form action="" class="search__form">
+                    <div class="search__location">
+                        <i class="uil uil-search button__icon"></i>
+                        <input type="text" class="location__input" pLaceholder="Search location" />
+                    </div>
+                    <a href="" class="button button--flex">Buscar</a>
+                </form>
+            </div>
+            <!--Añadir current location-->
+        </nav>
+    </header>
+
+    <main class="main">
+        <!--======================================== WEATHER TODAY ===========================================-->
+        <section class="current__weather" id="currentWeather">
+
+        </section>
+    </main>
+
 </body>
+
 </html>
