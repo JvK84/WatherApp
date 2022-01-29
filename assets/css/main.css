@@ -110,7 +110,6 @@ img{
 .header{
     width: 100%;
     position: fixed;
-    bottom: 0;
     left: 0;
     z-index: var(--z-fixed);
     background-color: var(--first-color-second);
@@ -233,16 +232,20 @@ img{
 
 /*================= MEDIA QUERIES =================*/
 /* Small devices */
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 500px) {
+    .nav__logo{
+        display:none;
+    }
     .container{
-        margin-left: var(--mb-1);
-        margin-right: var(--mb-1);
+        margin: auto;
     }
-
-    .nav__menu{
-        padding: 2rem .25rem 4rem;
+    .search__location > .button__icon{
+        display: none;
     }
+}
 
+
+@media screen and (max-width: 350px) {    
     .nav__list{
         column-gap: 0;
     }
