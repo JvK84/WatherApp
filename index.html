@@ -27,7 +27,7 @@
                         <i class="uil uil-search button__icon"></i>
                         <input type="text" class="location__input" pLaceholder="Search location" />
                     </div>
-                    <a href="" class="button button--flex">Buscar</a>
+                    <a href="" class="button button--flex">Search</a>
                 </form>
             </div>
             <!--Añadir current location-->
@@ -36,11 +36,34 @@
 
     <main class="main">
         <!--======================================== WEATHER TODAY ===========================================-->
-        <section class="current__weather" id="currentWeather">
+        <section class="weather section weather" id="currentWeather">
+            <div class="weather__container container grid">
+                <div class="main__weather">
 
+                </div>
+                <div class="hightlights">
+                    <div class="wind__block">
+                        <h3 class="title__block">Wind status</h3>
+                    </div>
+                    <div class="humidity__block">
+                        <h3 class="title__block">Humidity</h3>
+
+                    </div>
+                    <div class="visibility__block">
+                        <h3 class="title__block">Visibility</h3>
+
+                    </div>
+                    <div class="airPreasure__block">
+                        <h3 class="title__block">Air Preasure</h3>
+
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
+    <!--====================================== MAIN JS ==========================================-->
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
