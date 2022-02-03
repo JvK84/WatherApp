@@ -1,17 +1,12 @@
 class Fetch {
     async getWeatherByUrl(url) {
 
-        const response = await fetch(
+        const response = await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${url}`);
+        const responseJSON = await response.json();
+        const parseJSON = JSON.parse(JSON.stringify(responseJSON));
+        const lastWeather = new Object(parseJSON.consolidated_weather).pop();
+        console.log(lastWeather);
 
-            `https://www.metaweather.com/api/location/${url}`,
-            {
-                mode: 'no-cors',
-
-            }
-        );
-        const data = await response.text();
-        const json = data === "" ? {} : JSON.parse(data);
-
-        return json;
+        return lastWeather;
     }
 }

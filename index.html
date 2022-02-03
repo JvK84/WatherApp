@@ -38,28 +38,39 @@
         <!--======================================== WEATHER TODAY ===========================================-->
         <section class="weather section weather" id="currentWeather">
             <div class="weather__container container grid">
-                <div class="main__weather">
-
+                <div class="main__weather grid">
+                    <div class="left__main">
+                        <img src="" id="state__icon" class="main__icon" />
+                    </div>
+                    <div class="center__main">
+                        <div class="center__weather">
+                            <div class="temp__data" id="temp__data"></div>
+                            <div id="state__name" id="state__name"></div>
+                        </div>
+                    </div>
+                    <div class="right__main">
+                        <div class="city__name" id="city__name"></div>
+                    </div>
                 </div>
                 <div class="hightlights">
                     <div class="wind__block">
                         <h3 class="title__block">Wind status</h3>
-                        <div class="wind__data"></div>
+                        <div class="wind__data" id="wind__data"></div>
 
                     </div>
                     <div class="humidity__block">
                         <h3 class="title__block">Humidity</h3>
-                        <div class="humidity__data"></div>
+                        <div class="humidity__data" id="humidity__data"></div>
 
                     </div>
                     <div class="visibility__block">
                         <h3 class="title__block">Visibility</h3>
-                        <div class="visibility__data"></div>
+                        <div class="visibility__data" id="visibility__data"></div>
 
                     </div>
                     <div class="airPreasure__block">
                         <h3 class="title__block">Air Preasure</h3>
-                        <div class="airPreasure__data"></div>
+                        <div class="airPreasure__data" id="airPreasure__data"></div>
 
                     </div>
                 </div>
