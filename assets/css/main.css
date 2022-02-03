@@ -72,7 +72,6 @@ body{
     margin: 0 0 var(--header-height) 0;
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
-    background-color: var(--body-color);
     color: var(--text-color);
     background-color: var(--first-color-second);
 
@@ -173,7 +172,7 @@ div{
     border: 0px;
     color: white;
     text-align: center;
-    background-color: var(--body-color);
+    background-color: var(--first-color-second);
 }
 
 .location__input:focus{
@@ -190,6 +189,7 @@ div{
     padding: 1.5rem;
     align-items: center;
     background-color: rgb(30, 32, 79);
+    color: white;
 }
 
 .left__main{
@@ -208,6 +208,7 @@ div{
     background-color: rgb(30, 32, 79);
 }
 
+
 /*=============== SECTIONS ================*/
 .weather__container {
     gap: 1rem;
@@ -223,7 +224,7 @@ div{
 }
 
 .main__icon{
-    width: 150px;
+    width: 120px;
 }
 
 .temp__data{
@@ -234,8 +235,29 @@ div{
     font-size: 45px;
 }
 
-.state__name{
-    font-size: 45px;
+.state__name, .city__name{
+    font-size: 25px;
+}
+
+.hightlights{
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1.5rem;
+    align-items: center;
+}
+
+.wind__block{
+    display: grid;
+    grid-template-columns: max-content;
+    row-gap: 1rem;
+}
+
+.humidity__block{
+}
+
+.visibility__block{
+}
+
+.airPreasure__block{
 }
 
 /*=============== BUTTONS ================*/
@@ -380,6 +402,16 @@ div{
         justify-self: center;
     }
 
+    .humidity__block{
+        grid-column: initial;
+    }
+
+    .visibility__block{
+        display: grid;
+        order: 1;
+        justify-self: center;
+    }
+
     .about__container,
     .portfolio__content,
     .project__container,
@@ -450,11 +482,6 @@ div{
 
     .weather__container{
         row-gap: 5rem;
-    }
-
-    .weather__content{
-        padding-top: 5.5rem;
-        column-gap: 2rem;
     }
 
     .home__blob{

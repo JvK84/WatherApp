@@ -7,15 +7,25 @@ function getWeatherUrlByLocationByDay(cityLocation, date) {
     return `${cityLocation}/${fullDay.yyyy}/${fullDay.mm}/${fullDay.dd}/`;
 }
 
+function getDayByDate(date) {
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    return days[date.getDay()] + ', ' + date.getDate() + ' ' + monthNames[date.getDate()];
+}
+
 const HTML_WindData = document.querySelector(".wind__data");
 /************************** SET UP **************************/
 const date = new Date();
 const ft = new Fetch();
 var cityLocation = 766273;
 var city = 'Madrid';
+var stringOfDay = getDayByDate(date);
 
 /************************** HTML **************************/
 const cityName = document.getElementById('city__name');
+const dateName = document.getElementById('date__name');
 const stateIcon = document.getElementById('state__icon');
 const stateName = document.getElementById('state__name');
 const tempData = document.getElementById('temp__data');
@@ -29,7 +39,8 @@ var data = ft.getWeatherByUrl(cityLocation)
     .then(data => {
         stateIcon.src = `https://www.metaweather.com/static/img/weather/${data.weather_state_abbr}.svg`;
         stateName.innerHTML = data.weather_state_name;
-        tempData.innerHTML = Math.round(data.wind_speed) + '<span>ยบC</span>';
+        dateName.innerHTML = `${stringOfDay}`;
+        tempData.innerHTML = Math.round(data.wind_speed) + '<span>ºC</span>';
         cityName.innerHTML = `<i class="uil uil-map-marker"></i> ${city}`;
         windData.innerHTML = `${data.wind_speed} nmp`;
         humidityData.innerHTML = data.visibility;
