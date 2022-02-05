@@ -243,21 +243,33 @@ div{
     grid-template-columns: repeat(2, 1fr);
     padding: 1.5rem;
     align-items: center;
+    display: flex;
 }
 
 .wind__block{
     display: grid;
-    grid-template-columns: max-content;
     row-gap: 1rem;
+    padding: 1rem;
+    width: calc(100% - 75%);
 }
 
 .humidity__block{
+    display: grid;
+    row-gap: 1rem;
+    padding: 1rem; 
+    width: calc(100% - 75%);
 }
 
 .visibility__block{
+    display: grid;
+    row-gap: 1rem;
+    width: calc(100% - 75%);
 }
 
 .airPreasure__block{
+    display: grid;
+    row-gap: 1rem;
+    width: calc(100% - 75%);
 }
 
 /*=============== BUTTONS ================*/
@@ -403,7 +415,6 @@ div{
     }
 
     .humidity__block{
-        grid-column: initial;
     }
 
     .visibility__block{
