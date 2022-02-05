@@ -40,12 +40,12 @@ var data = ft.getWeatherByUrl(cityLocation)
         stateIcon.src = `https://www.metaweather.com/static/img/weather/${data.weather_state_abbr}.svg`;
         stateName.innerHTML = data.weather_state_name;
         dateName.innerHTML = `${stringOfDay}`;
-        tempData.innerHTML = Math.round(data.wind_speed) + '<span>ºC</span>';
+        tempData.innerHTML = Math.round(data.the_temp) + '<span>ºC</span>';
         cityName.innerHTML = `<i class="uil uil-map-marker"></i> ${city}`;
-        windData.innerHTML = `${data.wind_speed} nmp`;
-        humidityData.innerHTML = data.visibility;
-        visibilityData.innerHTML = data.wind_speed;
-        airPreasureData.innerHTML = data.air_pressure;
+        windData.innerHTML = Math.round((data.wind_speed * 1.6093449)) + ' km/h';
+        humidityData.innerHTML = data.humidity + ' %';
+        visibilityData.innerHTML = Math.round((data.visibility * 1.6093449)) + ' km/h';
+        airPreasureData.innerHTML = `${data.air_pressure} mb`;
 
     });
         /*

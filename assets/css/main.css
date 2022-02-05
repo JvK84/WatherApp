@@ -414,9 +414,6 @@ div{
         justify-self: center;
     }
 
-    .humidity__block{
-    }
-
     .visibility__block{
         display: grid;
         order: 1;

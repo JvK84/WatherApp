@@ -5,6 +5,7 @@ class Fetch {
         const responseJSON = await response.json();
         const parseJSON = JSON.parse(JSON.stringify(responseJSON));
         const lastWeather = new Object(parseJSON.consolidated_weather).pop();
+        console.log(lastWeather);
 
         return lastWeather;
     }
