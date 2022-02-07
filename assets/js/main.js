@@ -1,10 +1,7 @@
-function getWeatherUrlByLocationByDay(cityLocation, date) {
-    let fullDay = {
-        dd: date.getDate(),
-        mm: date.getMonth() + 1,
-        yyyy: date.getFullYear(),
-    };
-    return `${cityLocation}/${fullDay.yyyy}/${fullDay.mm}/${fullDay.dd}/`;
+function load() {
+    var cityLocation = 766273;
+    city = 'Madrid';
+    defaultData = callWeather(cityLocation);
 }
 
 function getDayByDate(date) {
@@ -15,13 +12,39 @@ function getDayByDate(date) {
     return days[date.getDay()] + ', ' + date.getDate() + ' ' + monthNames[date.getDate()];
 }
 
-const HTML_WindData = document.querySelector(".wind__data");
+function callWeather(cityLocation) {
+    ft.getWeatherByUrl(cityLocation)
+        .then(data => {
+            stateIcon.src = `https://www.metaweather.com/static/img/weather/${data.weather_state_abbr}.svg`;
+            stateName.innerHTML = data.weather_state_name;
+            dateName.innerHTML = `${stringOfDay}`;
+            tempData.innerHTML = Math.round(data.the_temp) + '<span>ºC</span>';
+            cityName.innerHTML = `<i class="uil uil-map-marker"></i> ${city}`;
+            windData.innerHTML = Math.round((data.wind_speed * 1.6093449)) + ' km/h';
+            humidityData.innerHTML = data.humidity + ' %';
+            visibilityData.innerHTML = Math.round((data.visibility * 1.6093449)) + ' km/h';
+            airPreasureData.innerHTML = `${data.air_pressure} mb`;
+        });
+}
+
+function searchLocation() {
+    var query = document.getElementById('location__input').value;
+    var locationId;
+
+    ft.getLocationByQuery(query)
+        .then(data => {
+            locationId = data.woeid;
+            city = data.title;
+        })
+    callWeather(locationId);
+}
+
 /************************** SET UP **************************/
 const date = new Date();
 const ft = new Fetch();
-var cityLocation = 766273;
-var city = 'Madrid';
 var stringOfDay = getDayByDate(date);
+var city;
+var defaultData;
 
 /************************** HTML **************************/
 const cityName = document.getElementById('city__name');
@@ -34,27 +57,4 @@ const humidityData = document.getElementById('humidity__data');
 const visibilityData = document.getElementById('visibility__data');
 const airPreasureData = document.getElementById('airPreasure__data');
 
-var url = getWeatherUrlByLocationByDay(cityLocation, date);
-var data = ft.getWeatherByUrl(cityLocation)
-    .then(data => {
-        stateIcon.src = `https://www.metaweather.com/static/img/weather/${data.weather_state_abbr}.svg`;
-        stateName.innerHTML = data.weather_state_name;
-        dateName.innerHTML = `${stringOfDay}`;
-        tempData.innerHTML = Math.round(data.the_temp) + '<span>ºC</span>';
-        cityName.innerHTML = `<i class="uil uil-map-marker"></i> ${city}`;
-        windData.innerHTML = Math.round((data.wind_speed * 1.6093449)) + ' km/h';
-        humidityData.innerHTML = data.humidity + ' %';
-        visibilityData.innerHTML = Math.round((data.visibility * 1.6093449)) + ' km/h';
-        airPreasureData.innerHTML = `${data.air_pressure} mb`;
-
-    });
-        /*
-data.air_pressure = wth.air_pressure,
-data.humidity = wth.humidity,
-data.max_temp = wth.max_temp,
-data.min_temp = wth.humidimin_tempty,
-data.the_temp = wth.the_temp,
-data.visibility = wth.visibility,
-data.wind_direction = wth.wind_direction,
-data.wind_direction_compass = wth.wind_direction_compass,
-data.wind_speed = wth.wind_speed*/
+window.onload = load();

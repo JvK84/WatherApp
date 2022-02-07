@@ -61,7 +61,6 @@
 *{
     box-sizing: border-box;
     padding: 0;
-    margin: 0;
 }
 
 html{
@@ -253,6 +252,11 @@ div{
     width: calc(100% - 75%);
 }
 
+.less__color{
+    background-color: rgb(30, 32, 79);
+    padding-bottom: 1rem;
+}
+
 .humidity__block{
     display: grid;
     row-gap: 1rem;
@@ -263,12 +267,14 @@ div{
 .visibility__block{
     display: grid;
     row-gap: 1rem;
+    padding: 1rem; 
     width: calc(100% - 75%);
 }
 
 .airPreasure__block{
     display: grid;
     row-gap: 1rem;
+    padding: 1rem; 
     width: calc(100% - 75%);
 }
 

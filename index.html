@@ -25,9 +25,9 @@
                 <form action="" class="search__form">
                     <div class="search__location">
                         <i class="uil uil-search button__icon"></i>
-                        <input type="text" class="location__input" pLaceholder="Search location" />
+                        <input type="text" class="location__input" id="location__input" pLaceholder="Search location" />
                     </div>
-                    <a href="" class="button button--flex">Search</a>
+                    <button class="button button--flex" onclick="searchLocation()">Search</a>
                 </form>
             </div>
             <!--Añadir current location-->
@@ -56,20 +56,31 @@
                 </div>
                 <div class="hightlights">
                     <div class="wind__block">
-                        <h3 class="title__block">Wind speed</h3>
-                        <div class="wind__data" id="wind__data"></div>
+                        <div class="less__color">
+                            <h3 class="title__block">Wind speed</h3>
+                            <div class="wind__data" id="wind__data"></div>
+                        </div>
                     </div>
                     <div class="humidity__block">
-                        <h3 class="title__block">Humidity</h3>
-                        <div class="humidity__data" id="humidity__data"></div>
+                        <div class="less__color">
+
+                            <h3 class="title__block">Humidity</h3>
+                            <div class="humidity__data" id="humidity__data"></div>
+                        </div>
                     </div>
                     <div class="visibility__block">
-                        <h3 class="title__block">Visibility</h3>
-                        <div class="visibility__data" id="visibility__data"></div>
+                        <div class="less__color">
+
+                            <h3 class="title__block">Visibility</h3>
+                            <div class="visibility__data" id="visibility__data"></div>
+                        </div>
                     </div>
                     <div class="airPreasure__block">
-                        <h3 class="title__block">Air Preasure</h3>
-                        <div class="airPreasure__data" id="airPreasure__data"></div>
+                        <div class="less__color">
+
+                            <h3 class="title__block">Air Preasure</h3>
+                            <div class="airPreasure__data" id="airPreasure__data"></div>
+                        </div>
                     </div>
                 </div>
             </div>
