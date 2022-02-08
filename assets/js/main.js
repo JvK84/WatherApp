@@ -1,5 +1,6 @@
+
 function load() {
-    var cityLocation = 766273;
+    cityLocation = 766273;
     city = 'Madrid';
     defaultData = callWeather(cityLocation);
 }
@@ -27,7 +28,7 @@ function callWeather(cityLocation) {
         });
 }
 
-function searchLocation() {
+/*function searchLocation() {
     var query = document.getElementById('location__input').value;
     var locationId;
 
@@ -37,24 +38,66 @@ function searchLocation() {
             city = data.title;
         })
     callWeather(locationId);
-}
+}*/
 
 /************************** SET UP **************************/
 const date = new Date();
 const ft = new Fetch();
 var stringOfDay = getDayByDate(date);
 var city;
+var cityLocation;
 var defaultData;
 
 /************************** HTML **************************/
-const cityName = document.getElementById('city__name');
-const dateName = document.getElementById('date__name');
-const stateIcon = document.getElementById('state__icon');
-const stateName = document.getElementById('state__name');
-const tempData = document.getElementById('temp__data');
-const windData = document.getElementById('wind__data');
-const humidityData = document.getElementById('humidity__data');
-const visibilityData = document.getElementById('visibility__data');
-const airPreasureData = document.getElementById('airPreasure__data');
+let cityName = document.getElementById('city__name');
+let dateName = document.getElementById('date__name');
+let stateIcon = document.getElementById('state__icon');
+let stateName = document.getElementById('state__name');
+let tempData = document.getElementById('temp__data');
+let windData = document.getElementById('wind__data');
+let humidityData = document.getElementById('humidity__data');
+let visibilityData = document.getElementById('visibility__data');
+let airPreasureData = document.getElementById('airPreasure__data');
+let searchForm = document.getElementById('search__form');
+let locationInput = document.getElementById('location__input')
 
-window.onload = load();
+
+
+navigator.geolocation.getCurrentPosition(
+    function (position) {
+        console.log(position.coords.latitude, position.coords.longitude);
+
+        function reqListener() {
+            console.log(this.responseText);
+        }
+    }
+)
+
+
+const getWeatherInfo = async (city) => {
+
+    const response = await fetch(`https://community-open-weather-map.p.rapidapi.com/find?q=${city}&units=metric`, {
+        'headers': {
+            'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
+            'x-rapidapi-key': 'SIGN-UP-FOR-KEY'
+        }
+    });
+
+    const data = response.json();
+    console.log(data);
+
+    /*setBackground(data);
+    setInfo(data);*/
+}
+
+searchForm.addEventListener('submit', x => {
+    x.preventDefault();
+    console.log(locationInput.value);
+    getWeatherInfo(locationInput.value);
+})
+
+window.onload = () => {
+    cityLocation = 766273;
+    city = 'Madrid';
+    defaultData = callWeather(cityLocation);
+}
