@@ -1,10 +1,10 @@
-
+/*
 function load() {
     cityLocation = 766273;
     city = 'Madrid';
     defaultData = callWeather(cityLocation);
 }
-
+*/
 function getDayByDate(date) {
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -12,7 +12,7 @@ function getDayByDate(date) {
     ];
     return days[date.getDay()] + ', ' + date.getDate() + ' ' + monthNames[date.getDate()];
 }
-
+/*
 function callWeather(cityLocation) {
     ft.getWeatherByUrl(cityLocation)
         .then(data => {
@@ -28,7 +28,7 @@ function callWeather(cityLocation) {
         });
 }
 
-/*function searchLocation() {
+function searchLocation() {
     var query = document.getElementById('location__input').value;
     var locationId;
 
@@ -63,7 +63,7 @@ let locationInput = document.getElementById('location__input')
 
 
 
-navigator.geolocation.getCurrentPosition(
+/*navigator.geolocation.getCurrentPosition(
     function (position) {
         console.log(position.coords.latitude, position.coords.longitude);
 
@@ -71,18 +71,18 @@ navigator.geolocation.getCurrentPosition(
             console.log(this.responseText);
         }
     }
-)
+)*/
 
 const setInfo = (object) => {
-    stateIcon.src = `https://www.metaweather.com/static/img/weather/${data.weather_state_abbr}.svg`;
-    stateName.innerHTML = data.weather_state_name;
+    //stateIcon.src = `https://www.metaweather.com/static/img/weather/${data.weather_state_abbr}.svg`;
+    stateName.innerHTML = object.list[0].weather[0].description;
     dateName.innerHTML = `${stringOfDay}`;
     tempData.innerHTML = Math.round(object.list[0].main.temp) + '<span>ºC</span>';
-    cityName.innerHTML = `<i class="uil uil-map-marker"></i> ${city}`;
-    windData.innerHTML = Math.round((data.wind_speed * 1.6093449)) + ' km/h';
+    cityName.innerHTML = `<i class="uil uil-map-marker"></i> ${object.list[0].name}`;
+    windData.innerHTML = Math.round((object.list[0].wind.speed * 1.6093449)) + ' km/h';
     humidityData.innerHTML = object.list[0].main.humidity + ' %';
-    visibilityData.innerHTML = Math.round((data.visibility * 1.6093449)) + ' km/h';
-    airPreasureData.innerHTML = `${data.air_pressure} mb`;
+    //visibilityData.innerHTML = Math.round((data.visibility * 1.6093449)) + ' km/h';
+    airPreasureData.innerHTML = `${object.list[0].main.pressure} mb`;
 }
 
 const getWeatherInfo = async (city) => {
@@ -106,7 +106,6 @@ searchForm.addEventListener('submit', x => {
 })
 
 window.onload = () => {
-    cityLocation = 766273;
     city = 'Madrid';
-    defaultData = callWeather(cityLocation);
+    defaultData = getWeatherInfo(city);
 }
