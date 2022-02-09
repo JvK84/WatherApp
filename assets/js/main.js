@@ -1,48 +1,5 @@
-/*
-function load() {
-    cityLocation = 766273;
-    city = 'Madrid';
-    defaultData = callWeather(cityLocation);
-}
-*/
-function getDayByDate(date) {
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ];
-    return days[date.getDay()] + ', ' + date.getDate() + ' ' + monthNames[date.getDate()];
-}
-/*
-function callWeather(cityLocation) {
-    ft.getWeatherByUrl(cityLocation)
-        .then(data => {
-            stateIcon.src = `https://www.metaweather.com/static/img/weather/${data.weather_state_abbr}.svg`;
-            stateName.innerHTML = data.weather_state_name;
-            dateName.innerHTML = `${stringOfDay}`;
-            tempData.innerHTML = Math.round(data.the_temp) + '<span>ºC</span>';
-            cityName.innerHTML = `<i class="uil uil-map-marker"></i> ${city}`;
-            windData.innerHTML = Math.round((data.wind_speed * 1.6093449)) + ' km/h';
-            humidityData.innerHTML = data.humidity + ' %';
-            visibilityData.innerHTML = Math.round((data.visibility * 1.6093449)) + ' km/h';
-            airPreasureData.innerHTML = `${data.air_pressure} mb`;
-        });
-}
-
-function searchLocation() {
-    var query = document.getElementById('location__input').value;
-    var locationId;
-
-    ft.getLocationByQuery(query)
-        .then(data => {
-            locationId = data.woeid;
-            city = data.title;
-        })
-    callWeather(locationId);
-}*/
-
 /************************** SET UP **************************/
 const date = new Date();
-const ft = new Fetch();
 var stringOfDay = getDayByDate(date);
 var city;
 var cityLocation;
@@ -56,35 +13,27 @@ let stateName = document.getElementById('state__name');
 let tempData = document.getElementById('temp__data');
 let windData = document.getElementById('wind__data');
 let humidityData = document.getElementById('humidity__data');
-let visibilityData = document.getElementById('visibility__data');
+let feelsLikeData = document.getElementById('feelsLike__data');
 let airPreasureData = document.getElementById('airPreasure__data');
 let searchForm = document.getElementById('search__form');
 let locationInput = document.getElementById('location__input')
 
 
 
-/*navigator.geolocation.getCurrentPosition(
-    function (position) {
-        console.log(position.coords.latitude, position.coords.longitude);
 
-        function reqListener() {
-            console.log(this.responseText);
+
+
+
+window.onload = () => {
+    navigator.geolocation.getCurrentPosition(
+        function (position) {
+            console.log(position.coords.latitude, position.coords.longitude);
+
         }
-    }
-)*/
-
-const setInfo = (object) => {
-    //stateIcon.src = `https://www.metaweather.com/static/img/weather/${data.weather_state_abbr}.svg`;
-    stateName.innerHTML = object.list[0].weather[0].description;
-    dateName.innerHTML = `${stringOfDay}`;
-    tempData.innerHTML = Math.round(object.list[0].main.temp) + '<span>ºC</span>';
-    cityName.innerHTML = `<i class="uil uil-map-marker"></i> ${object.list[0].name}`;
-    windData.innerHTML = Math.round((object.list[0].wind.speed * 1.6093449)) + ' km/h';
-    humidityData.innerHTML = object.list[0].main.humidity + ' %';
-    //visibilityData.innerHTML = Math.round((data.visibility * 1.6093449)) + ' km/h';
-    airPreasureData.innerHTML = `${object.list[0].main.pressure} mb`;
+    )
+    city = 'Madrid';
+    defaultData = getWeatherInfo(city);
 }
-
 const getWeatherInfo = async (city) => {
 
     const response = await fetch(`https://community-open-weather-map.p.rapidapi.com/find?q=${city}&units=metric`, {
@@ -99,13 +48,29 @@ const getWeatherInfo = async (city) => {
     setInfo(data);
 }
 
+const setInfo = (object) => {
+    //stateIcon.src = `https://www.metaweather.com/static/img/weather/${data.weather_state_abbr}.svg`;
+    stateName.innerHTML = object.list[0].weather[0].description;
+    dateName.innerHTML = `${stringOfDay}`;
+    tempData.innerHTML = object.list[0].main.temp + '<span>ºC</span>';
+    cityName.innerHTML = `<i class="uil uil-map-marker"></i> ${object.list[0].name}`;
+    windData.innerHTML = Math.round((object.list[0].wind.speed * 1.6093449)) + ' km/h';
+    humidityData.innerHTML = object.list[0].main.humidity + ' %';
+    feelsLikeData.innerHTML = object.list[0].main.feels_like + '<span>ºC</span>';
+    airPreasureData.innerHTML = `${object.list[0].main.pressure} mb`;
+}
+
 searchForm.addEventListener('submit', x => {
     x.preventDefault();
     console.log(locationInput.value);
     getWeatherInfo(locationInput.value);
 })
 
-window.onload = () => {
-    city = 'Madrid';
-    defaultData = getWeatherInfo(city);
+
+function getDayByDate(date) {
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    return days[date.getDay()] + ', ' + date.getDate() + ' ' + monthNames[date.getDate()];
 }

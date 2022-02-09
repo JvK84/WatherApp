@@ -264,7 +264,7 @@ div{
     width: calc(100% - 75%);
 }
 
-.visibility__block{
+.feelsLike__block{
     display: grid;
     row-gap: 1rem;
     padding: 1rem; 
@@ -420,7 +420,7 @@ div{
         justify-self: center;
     }
 
-    .visibility__block{
+    .feelsLike__block{
         display: grid;
         order: 1;
         justify-self: center;
