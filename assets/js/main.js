@@ -73,21 +73,30 @@ navigator.geolocation.getCurrentPosition(
     }
 )
 
+const setInfo = (object) => {
+    stateIcon.src = `https://www.metaweather.com/static/img/weather/${data.weather_state_abbr}.svg`;
+    stateName.innerHTML = data.weather_state_name;
+    dateName.innerHTML = `${stringOfDay}`;
+    tempData.innerHTML = Math.round(object.list[0].main.temp) + '<span>ºC</span>';
+    cityName.innerHTML = `<i class="uil uil-map-marker"></i> ${city}`;
+    windData.innerHTML = Math.round((data.wind_speed * 1.6093449)) + ' km/h';
+    humidityData.innerHTML = object.list[0].main.humidity + ' %';
+    visibilityData.innerHTML = Math.round((data.visibility * 1.6093449)) + ' km/h';
+    airPreasureData.innerHTML = `${data.air_pressure} mb`;
+}
 
 const getWeatherInfo = async (city) => {
 
     const response = await fetch(`https://community-open-weather-map.p.rapidapi.com/find?q=${city}&units=metric`, {
         'headers': {
             'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
-            'x-rapidapi-key': 'SIGN-UP-FOR-KEY'
+            'x-rapidapi-key': '61e4f4e66emshd8443cd4da9242bp164dcfjsn107ecae487db'
         }
     });
 
-    const data = response.json();
+    const data = await response.json();
     console.log(data);
-
-    /*setBackground(data);
-    setInfo(data);*/
+    setInfo(data);
 }
 
 searchForm.addEventListener('submit', x => {
