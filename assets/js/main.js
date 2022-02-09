@@ -52,11 +52,11 @@ const setInfo = (object) => {
     //stateIcon.src = `https://www.metaweather.com/static/img/weather/${data.weather_state_abbr}.svg`;
     stateName.innerHTML = object.list[0].weather[0].description;
     dateName.innerHTML = `${stringOfDay}`;
-    tempData.innerHTML = object.list[0].main.temp + '<span>ºC</span>';
+    tempData.innerHTML = Math.round(object.list[0].main.temp) + '<span>ºC</span>';
     cityName.innerHTML = `<i class="uil uil-map-marker"></i> ${object.list[0].name}`;
     windData.innerHTML = Math.round((object.list[0].wind.speed * 1.6093449)) + ' km/h';
     humidityData.innerHTML = object.list[0].main.humidity + ' %';
-    feelsLikeData.innerHTML = object.list[0].main.feels_like + '<span>ºC</span>';
+    feelsLikeData.innerHTML = Math.round(object.list[0].main.feels_like) + '<span>ºC</span>';
     airPreasureData.innerHTML = `${object.list[0].main.pressure} mb`;
 }
 
